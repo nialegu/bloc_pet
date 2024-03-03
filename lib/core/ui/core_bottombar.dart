@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class BottomNavigationBarCore extends StatefulWidget {
-  const BottomNavigationBarCore({super.key});
+class BottomNavigationBarCore extends StatelessWidget {
+  const BottomNavigationBarCore({super.key, required this.navigationShell});
 
-  @override
-  State<StatefulWidget> createState() => _BottomBarCore();
-}
-
-class _BottomBarCore extends State<BottomNavigationBarCore> {
-  int currentIndex = 0;
-
-  void selectPage(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.abc),
-          label: "Home",
-          activeIcon: Icon(Icons.access_alarm),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.abc),
-          label: "Profile",
-          activeIcon: Icon(Icons.access_alarm),
-        ),
-      ],
-      currentIndex: currentIndex,
-      onTap: (index) {
-        selectPage(index);
-      },
+      items: _bottomNavigationBarItems,
+      currentIndex: navigationShell.currentIndex,
+      onTap: (index) => navigationShell.goBranch(
+        index,
+        initialLocation: index == navigationShell.currentIndex,
+      ),
     );
   }
 }
+
+List<BottomNavigationBarItem> get _bottomNavigationBarItems => [
+      const BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: "Home",
+      ),
+      const BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: "Recipients",
+      ),
+      const BottomNavigationBarItem(
+        icon: Icon(Icons.add_box),
+        label: "Gifts",
+      ),
+    ];

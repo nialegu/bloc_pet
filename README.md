@@ -1,16 +1,29 @@
-# flutter_application_1
+# Планировщик подарков
 
-A new Flutter project.
+Приложение представляет собой помощник по планированию подарков.
+Приложение должно иметь список возможных получателей и возможных подарков для них, который можно редактировать (добавлять и удалять получателей, добавлять, редактировать и удалять потенциальные подарки).
 
-## Getting Started
+Entity: 
+1. Gift() :
+    - name
+    - price
 
-This project is a starting point for a Flutter application.
+2. Recipient() :
+    - name
+    - surname
 
-A few resources to get you started if this is your first Flutter project:
+3. Plan() :
+    - date
+    - holiday 
+    - List<Recipient>() recipients
+    - List<Gift>() gifts
+    * Map<holiday, Map<recipients, List<Gifts>>> 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Screens:
+1. Home: список планов по датам
+2. Recipients: список получателей
+3. Gifts: список подарков 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Приложение должно позволять создавать, редактировать и удалять записи в списке планов. Каждый "план" должен содержать следующие данные: дату, праздник (например, День рождения, 8 марта и т.п.), получателя подарка (например, сестра, папа, жена и т.п.), подарок с его стоимостью.
+При добавлении и редактировании "плана" приложение должно позволять выбирать получателя из числа добавленных ранее или добавить нового в список. В зависимсости от выбранного получателя приложение должно позволять выбирать подарок из списка добавленных ранее или добавить новый в список.
+Приложение должно отображать список "планов" на главной странице приложение и группировать "планы" по датам.
