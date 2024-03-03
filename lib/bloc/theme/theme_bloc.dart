@@ -7,6 +7,7 @@ part 'theme_state.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(const ThemeInitial()) {
+    
     on<DarkThemeEvent>((event, emit) {
       emit(const DarkThemeState());
     });

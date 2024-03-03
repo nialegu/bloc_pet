@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app.dart';
-import 'package:flutter_application_1/core/data/data_source/database.dart';
 
-void main() {
+import 'di_container.dart' as di;
+
+void main() async {
   runApp(const MyApp());
 
-  AppDatabase();
+  await di.init();
 }

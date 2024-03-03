@@ -2,7 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:flutter_application_1/core/data/data_source/database.dart';
 
 class Plans extends Table{
-  IntColumn get id => integer()();
+  IntColumn get id => integer().autoIncrement()();
   DateTimeColumn get name => dateTime()();
   TextColumn get holiday => text()();
   TextColumn get recepients => text().map(const RecepientsConverter())();

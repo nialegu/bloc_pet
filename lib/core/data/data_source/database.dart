@@ -20,6 +20,8 @@ part 'database.g.dart';
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super (_openConnection());
 
+  Future<List<Recepient>> get recepientsList => select(recepients).get();
+
   @override
   int get schemaVersion => 1;
 }
