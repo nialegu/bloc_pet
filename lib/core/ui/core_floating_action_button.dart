@@ -43,8 +43,18 @@ class FloatingActionButtonCore extends StatelessWidget {
       builder: (context) {
         return SizedBox(
           height: MediaQuery.of(context).size.height * 0.8,
-          child: const SingleChildScrollView(
-            child: AddRecipientForm(),
+          child: DraggableScrollableSheet(
+            initialChildSize: 1,
+            minChildSize: 0.99,
+            expand: false,
+            builder: (context, scrollController) {
+              return Padding(
+                padding: const EdgeInsets.all(20),
+                child: AddRecipientForm(
+                  scrollController: scrollController,
+                ),
+              );
+            },
           ),
         );
       },

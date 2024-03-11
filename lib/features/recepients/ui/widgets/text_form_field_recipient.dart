@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TextFormFieldRecipient extends StatelessWidget {
   final String label;
   final String? hint;
-  final String? value;
+  final dynamic value;
 
   TextFormFieldRecipient({
     super.key,
@@ -16,17 +16,20 @@ class TextFormFieldRecipient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: _controller,
-      initialValue: value,
-      decoration: InputDecoration(
-        hintText: hint,
-        label: Text(label),
-        suffixIcon: IconButton(
-          onPressed: () {
-            _controller.clear();
-          },
-          icon: const Icon(Icons.clear),
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: TextFormField(
+        controller: _controller,
+        initialValue: value,
+        decoration: InputDecoration(
+          hintText: hint,
+          label: Text(label),
+          suffixIcon: IconButton(
+            onPressed: () {
+              _controller.clear();
+            },
+            icon: const Icon(Icons.clear),
+          ),
         ),
       ),
     );

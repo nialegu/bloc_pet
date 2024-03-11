@@ -1,4 +1,5 @@
 import 'package:flutter_application_1/core/bloc/floating_button/floating_button_bloc.dart';
+import 'package:flutter_application_1/features/recepients/bloc/form_recepient_bloc/form_recipient_bloc_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '/core/data/data_source/database.dart';
@@ -14,4 +15,5 @@ Future<void> init() async {
 
   // Features
   sl.registerLazySingleton(() => RecipientsBloc());
+  sl.registerLazySingleton(() => FormRecipientBlocBloc());
 }
