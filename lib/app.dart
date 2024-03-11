@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/bloc/theme/theme_bloc.dart';
+import 'package:flutter_application_1/core/bloc/theme/theme_bloc.dart';
 import 'package:flutter_application_1/core/style/dark_theme.dart';
 import 'package:flutter_application_1/core/style/light_theme.dart';
 import 'package:flutter_application_1/routing/app_routing.dart';

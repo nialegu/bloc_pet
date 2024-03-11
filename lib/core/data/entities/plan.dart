@@ -9,16 +9,16 @@ class Plans extends Table{
   TextColumn get gifts => text().map(const GiftsConverter())();
 }
 
-class RecepientsConverter extends TypeConverter<List<Recepient>?, String> {
+class RecepientsConverter extends TypeConverter<List<Recipient>?, String> {
   const RecepientsConverter();
 
   @override
-  List<Recepient> fromSql(String fromDb){
-    return (fromDb as Iterable).map((e) => Recepient.fromJson(e)).toList();
+  List<Recipient> fromSql(String fromDb){
+    return (fromDb as Iterable).map((e) => Recipient.fromJson(e)).toList();
   }
 
   @override
-  String toSql(List<Recepient>? value) {
+  String toSql(List<Recipient>? value) {
     return value.toString();
   }
 }

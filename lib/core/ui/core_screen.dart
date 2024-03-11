@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/ui/core_floating_action_button.dart';
 import 'package:go_router/go_router.dart';
 
 import '/core/ui/core_appbar.dart';
@@ -11,11 +12,12 @@ class CoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBarCore(navigationShell: navigationShell),
       body: navigationShell,
-      bottomNavigationBar: BottomNavigationBarCore(navigationShell: navigationShell),
+      floatingActionButton: FloatingActionButtonCore(navigationShell: navigationShell),
+      bottomNavigationBar:
+          BottomNavigationBarCore(navigationShell: navigationShell),
     );
   }
 }

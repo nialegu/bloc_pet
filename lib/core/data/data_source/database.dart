@@ -10,17 +10,37 @@ import 'package:path/path.dart' as p;
 
 part 'database.g.dart';
 
-@DriftDatabase(
-  tables: [
-    Recepients,
-    Gifts,
-    Plans,
-  ]
-)
+@DriftDatabase(tables: [
+  Recipients,
+  Gifts,
+  Plans,
+])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super (_openConnection());
+  AppDatabase() : super(_openConnection());
 
-  Future<List<Recepient>> get recepientsList => select(recepients).get();
+  Future<List<Recipient>> get recipientsList async =>
+      await select(recipients).get();
+
+  Future<bool> addRecipient(String name, String surname, DateTime birthday) async {
+    try {
+      await into(recipients).insert(
+          RecipientsCompanion(name: Value(name), surname: Value(surname), birthday: Value(birthday),));
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> deleteRecipient(int id) async {
+    try {
+      await (delete(recipients)..where((item) => item.id.equals(id))).go();
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 
   @override
   int get schemaVersion => 1;

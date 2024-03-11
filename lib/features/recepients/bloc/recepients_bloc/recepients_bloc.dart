@@ -1,33 +1,47 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_application_1/core/bloc/config_bloc.dart';
 import 'package:flutter_application_1/core/data/data_source/database.dart';
-import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
 
 part 'recepients_event.dart';
 part 'recepients_state.dart';
 
-final GetIt getIt = GetIt.instance;
+class RecipientsBloc extends Bloc<RecipientsEvent, RecipientsState> {
+  RecipientsBloc() : super(RecepientsInitial());
+  
+  @protected
+  final controller = StreamController<List<Recipient>>.broadcast();
 
-class RecepientsBloc extends Bloc<RecepientsEvent, RecepientsState> {
-  RecepientsBloc()
-      : super(const RecepientsInitial(
-          recepients: [],
-        )) {
-    on<AddRecepient>((event, emit) {
-      print(emit);
-    });
-  }
+  Stream<List<Recipient>> get streamBloc => controller.stream;
 
   AppDatabase get db => getIt.get<AppDatabase>();
 
-  Future<List<Recepient>> getRecepients() async {
-    return await db.recepientsList;
+  Future<void> updateRecipients() async {
+    controller.add(await db.recipientsList);
   }
 
-  @protected
-  final controller = StreamController<RecepientsBloc>.broadcast();
+  Future<bool> addRecipient(String name, String surname, DateTime birthday) async {
+    final response = await db.addRecipient(name, surname, birthday);
 
-  Stream<RecepientsBloc> get streamBloc => controller.stream;
+    if (response) {
+      updateRecipients();
+      return true;
+    }
+
+    return false;
+  }
+
+  Future<bool> deleteRecipient(int id) async {
+    final response = await db.deleteRecipient(id);
+
+    if (response) {
+      updateRecipients();
+      return true;
+    }
+
+    return false;
+  }
+
 }
